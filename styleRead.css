@@ -1,0 +1,32 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+
+body {
+    font-family: 'Open Sans', sans-serif;
+}
+
+
+h2 {
+    padding: 20px;
+    text-align: center;
+    color: #424242;
+}
+
+.container {
+    max-width: 90%;
+    width: 400px;
+    margin: 80px auto;
+}
+
+
+.qr-reader-results {
+    padding: 20px;
+    background: #aadb08;
+    text-align: center;
+    color: black;
+}

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Code Creation System | QR Reader </title>
+    <link rel="stylesheet" href="styleRead.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.8/html5-qrcode.min.js"></script>
+</head>
+
+<body>
+
+
+    <div class="container">
+
+        <h2>QR Reader System</h2>
+        <div id="qr-reader"></div>
+        <div id="qr-reader-results"></div>
+
+    </div>
+
+
+    <script>
+
+        function onScanSuccess(decodedText, decodedResult) {
+            // Manejar el texto decodificado aquí
+            console.log(`Código QR escaneado: ${decodedText}`);
+            document.getElementById('qr-reader-results').innerText = `Código QR escaneado: ${decodedText}`;
+            document.getElementById('qr-reader-results').setAttribute("class", "qr-reader-results");
+        }
+
+        function onScanFailure(error) {
+            // Manejar errores durante el escaneo aquí
+            console.warn(`Error de escaneo: ${error}`);
+        }
+
+        // Crear un objeto Html5QrcodeScanner y comenzar el escaneo
+        const html5QrCode = new Html5Qrcode("qr-reader");
+
+        // Opciones de configuración
+        const qrConfig = {
+            fps: 10,    // Velocidad de escaneo en frames por segundo
+            qrbox: { width: 250, height: 250 }  // Tamaño del área de escaneo
+        };
+
+        // Iniciar el escaneo
+        html5QrCode.start(
+            { facingMode: "environment" },  // Usar la cámara trasera si está disponible
+            qrConfig,
+            onScanSuccess,
+            onScanFailure
+        ).catch(err => {
+            console.error(`Error al iniciar el escaneo: ${err}`);
+        });
+
+    </script>
+
+</body>
+</html>
